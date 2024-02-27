@@ -12,7 +12,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 # xdebug
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 RUN install-php-extensions xdebug
-ENV PHP_IDE_CONFIG 'serverName=dbg'
+ENV PHP_IDE_CONFIG 'serverName=my_blog_php'
 RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

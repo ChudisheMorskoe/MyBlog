@@ -11,7 +11,7 @@ services:
       - "8089:80"
 
   php-fpm:
-    container_name: dbg
+    container_name: my_blog_php
     build:
       context: docker/php
     volumes:

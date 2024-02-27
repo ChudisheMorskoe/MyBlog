@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -29,7 +30,7 @@ class User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profileDescription = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $profilePicture = null;
 
     public function getId(): ?int
@@ -42,10 +43,15 @@ class User
         return $this->email;
     }
 
+    /**
+     * @throws Exception
+     */
     public function setEmail(string $email): static
     {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception();
+        }
         $this->email = $email;
-
         return $this;
     }
 
