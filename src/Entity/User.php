@@ -49,7 +49,7 @@ class User
     public function setEmail(string $email): static
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new Exception();
+            throw new Exception('Invalid email address');
         }
         $this->email = $email;
         return $this;
